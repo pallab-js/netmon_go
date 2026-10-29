@@ -1,0 +1,31 @@
+# NetScope .gitignore
+
+# Binaries
+build/bin
+netscope
+
+# Frontend
+node_modules
+frontend/dist
+frontend/.vite
+# Go
+*.exe
+*.test
+vendor/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local

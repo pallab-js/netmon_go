@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=NetScope
+Comment=Local network monitor: live throughput, latency, LAN devices and connections
+Exec=/home/ubl/Desktop/go_test/netscope/build/bin/netscope
+Icon=/home/ubl/Desktop/go_test/netscope/build/appicon.png
+Type=Application
+Categories=Network;Monitor;
+Terminal=false
+StartupNotify=true

@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@import "uplot/dist/uPlot.min.css";
+
+@theme {
+  --color-bg: #0b0f14;
+  --color-panel: #111826;
+  --color-panel2: #151d2c;
+  --color-line: #1f2a37;
+  --color-ink: #e6edf3;
+  --color-muted: #8b9bb4;
+  --color-accent: #2dd4bf;
+  --color-down: #38bdf8;
+  --color-up: #a78bfa;
+  --color-warn: #f59e0b;
+  --color-bad: #f87171;
+  --color-good: #34d399;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "tnum" 1;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: rgba(45, 212, 191, 0.25);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #243041;
+    border-radius: 999px;
+    border: 2px solid var(--color-bg);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #33445c;
+  }
+}
+
+@layer components {
+  .card {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+  }
+
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .chip {
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+}
+
+.uplot,
+.uplot * {
+  font-family: inherit;
+}
+
+.u-legend {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.u-legend .u-marker {
+  border-radius: 2px;
+}
+
+.u-select {
+  background: rgba(45, 212, 191, 0.08);
+}
+
+.u-cursor-pt {
+  border-color: var(--color-accent);
+}
