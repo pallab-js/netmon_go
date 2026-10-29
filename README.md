@@ -8,12 +8,13 @@ A clean, minimal network monitor for the Linux desktop — live interface throug
 - **Latency & loss** — gateway + 1.1.1.1 probes (2 s), 60-second rollups, 30-day history
 - **LAN discovery** — ARP + ICMP sweep of your active `/24`, online/offline device list
 - **Connections** — active connections of your own processes (2 s refresh)
+- **Packet capture** — live packet inspection with BPF filters, protocol coloring, and PCAP export
 - **History** — SQLite (WAL), CSV export, 30-day retention
 - **Alerts** — link down / net down / new device toasts (in-app only)
 
 ## Tech stack
 
-Go 1.26 + Wails v2 · React 19 + TypeScript + Tailwind CSS 4 · uPlot · modernc.org/sqlite · gopsutil · pro-bing
+Go 1.26 + Wails v2 · React 19 + TypeScript + Tailwind CSS 4 · uPlot · modernc.org/sqlite · gopsutil · pro-bing · gopacket
 
 ## Build
 
