@@ -14,6 +14,10 @@ export function GetHistory(arg1, arg2) {
   return window['go']['main']['App']['GetHistory'](arg1, arg2);
 }
 
+export function GetPackets(arg1, arg2) {
+  return window['go']['main']['App']['GetPackets'](arg1, arg2);
+}
+
 export function GetSettings() {
   return window['go']['main']['App']['GetSettings']();
 }
@@ -42,6 +46,10 @@ export function OpenDataFolder() {
   return window['go']['main']['App']['OpenDataFolder']();
 }
 
+export function SaveCapturePcap() {
+  return window['go']['main']['App']['SaveCapturePcap']();
+}
+
 export function ScanLAN() {
   return window['go']['main']['App']['ScanLAN']();
 }
@@ -52,4 +60,12 @@ export function SetInterface(arg1) {
 
 export function SetPaused(arg1) {
   return window['go']['main']['App']['SetPaused'](arg1);
+}
+
+export function StartCapture(arg1) {
+  return window['go']['main']['App']['StartCapture'](arg1);
+}
+
+export function StopCapture() {
+  return window['go']['main']['App']['StopCapture']();
 }

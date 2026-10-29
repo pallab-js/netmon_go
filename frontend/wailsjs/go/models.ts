@@ -181,6 +181,28 @@ export namespace model {
 	    }
 	}
 	
+	export class Packet {
+	    t: number;
+	    proto: string;
+	    src: string;
+	    dst: string;
+	    length: number;
+	    info: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new Packet(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.t = source["t"];
+	        this.proto = source["proto"];
+	        this.src = source["src"];
+	        this.dst = source["dst"];
+	        this.length = source["length"];
+	        this.info = source["info"];
+	    }
+	}
 	export class Settings {
 	    iface: string;
 	    dataPath: string;
@@ -233,6 +255,7 @@ export namespace model {
 	    traffic: TrafficPoint[];
 	    latency: LatencyPoint[];
 	    topConns: Conn[];
+	    packets: Packet[];
 	    updatedAt: number;
 	
 	    static createFrom(source: any = {}) {
@@ -256,6 +279,7 @@ export namespace model {
 	        this.traffic = this.convertValues(source["traffic"], TrafficPoint);
 	        this.latency = this.convertValues(source["latency"], LatencyPoint);
 	        this.topConns = this.convertValues(source["topConns"], Conn);
+	        this.packets = this.convertValues(source["packets"], Packet);
 	        this.updatedAt = source["updatedAt"];
 	    }
 	

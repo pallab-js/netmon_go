@@ -17,6 +17,14 @@ export type Device = {
   lastSeen: number
   online: boolean
 }
+export type Packet = {
+  t: number
+  proto: string
+  src: string
+  dst: string
+  length: number
+  info: string
+}
 export type Snapshot = {
   iface: IfaceInfo
   ifaces: string[]
@@ -33,6 +41,7 @@ export type Snapshot = {
   traffic: TrafficPoint[]
   latency: LatencyPoint[]
   topConns: Conn[]
+  packets?: Packet[]
   updatedAt: number
 }
 export type TrafficRow = { t: number; rx: number; tx: number }
@@ -62,4 +71,4 @@ export type Settings = {
 }
 export type ToastKind = 'info' | 'warn' | 'error' | 'good'
 export type ToastMsg = { id: number; kind: ToastKind; message: string }
-export type Page = 'overview' | 'history' | 'devices' | 'connections' | 'settings'
+export type Page = 'overview' | 'history' | 'devices' | 'connections' | 'packets' | 'settings'

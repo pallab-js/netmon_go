@@ -343,8 +343,9 @@ func (h *Hub) startCapture() {
 	go func() {
 		for p := range c.Packets() {
 			h.mu.Lock()
-			h.packets = appendRing(h.packets, model.Packet{T: p.T, Proto: p.Proto, Src: p.Src, Dst: p.Dst, Length: p.Length, Info: p.Info}, 200)
+			h.packets = appendRing(h.packets, model.Packet{T: p.T, Proto: p.Proto, Src: p.Src, Dst: p.Dst, Length: p.Length, Info: p.Info}, 500)
 			h.mu.Unlock()
+			h.emit("packet:tick", model.Packet{T: p.T, Proto: p.Proto, Src: p.Src, Dst: p.Dst, Length: p.Length, Info: p.Info})
 		}
 	}()
 }
@@ -764,3 +765,76 @@ func appendRing[T any](ring []T, v T, max int) []T {
 	}
 	return append(ring, v)
 }
+
+func (h *Hub) GetPackets(filter string, limit int) []model.Packet {
+	h.mu.RLock()
+	defer h.mu.RUnlock()
+	pkts := h.packets
+	if limit > 0 && len(pkts) > limit {
+		pkts = pkts[len(pkts)-limit:]
+	}
+	res := make([]model.Packet, 0, len(pkts))
+	for _, p := range pkts {
+		if filter != "" {
+			f := strings.ToLower(filter)
+			if !strings.Contains(strings.ToLower(p.Proto), f) && !strings.Contains(strings.ToLower(p.Src), f) && !strings.Contains(strings.ToLower(p.Dst), f) && !strings.Contains(strings.ToLower(p.Info), f) {
+				continue
+			}
+		}
+		res = append(res, p)
+	}
+	if len(res) == 0 {
+		return res
+	}
+	return res
+}
+
+func (h *Hub) StartCapture(filter string) error {
+	h.mu.Lock()
+	if h.capture != nil {
+		h.mu.Unlock()
+		if c, ok := interface{}(h.capture).(interface{ Start(string) error }); ok {
+			return c.Start(filter)
+		}
+		return nil
+	}
+	c := capture.New(h.iface)
+	h.capture = c
+	h.mu.Unlock()
+	if err := c.Start(filter); err != nil {
+		return err
+	}
+	go func() {
+		for p := range c.Packets() {
+			h.mu.Lock()
+			h.packets = appendRing(h.packets, model.Packet{T: p.T, Proto: p.Proto, Src: p.Src, Dst: p.Dst, Length: p.Length, Info: p.Info}, 1000)
+			h.mu.Unlock()
+			h.emit("packet:tick", model.Packet{T: p.T, Proto: p.Proto, Src: p.Src, Dst: p.Dst, Length: p.Length, Info: p.Info})
+		}
+	}()
+	return nil
+}
+
+func (h *Hub) StopCapture() error {
+	h.mu.Lock()
+	if h.capture != nil {
+		h.capture.Stop()
+		h.capture = nil
+	}
+	h.mu.Unlock()
+	return nil
+}
+
+func (h *Hub) SaveCapturePcap(path string) error {
+	h.mu.RLock()
+	c := h.capture
+	h.mu.RUnlock()
+	if c == nil {
+		return fmt.Errorf("no capture in progress")
+	}
+	if cc, ok := interface{}(c).(interface{ StartPersistentPCAP(string) error }); ok {
+		return cc.StartPersistentPCAP(path)
+	}
+	return fmt.Errorf("not supported")
+}
+

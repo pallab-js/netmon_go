@@ -8,6 +8,8 @@ export function ExportCSV(arg1:number,arg2:number):Promise<string>;
 
 export function GetHistory(arg1:number,arg2:number):Promise<model.History>;
 
+export function GetPackets(arg1:string,arg2:number):Promise<Array<model.Packet>>;
+
 export function GetSettings():Promise<model.Settings>;
 
 export function GetSnapshot():Promise<model.Snapshot>;
@@ -22,8 +24,14 @@ export function ListEvents(arg1:number):Promise<Array<model.Event>>;
 
 export function OpenDataFolder():Promise<void>;
 
+export function SaveCapturePcap():Promise<string>;
+
 export function ScanLAN():Promise<void>;
 
 export function SetInterface(arg1:string):Promise<void>;
 
 export function SetPaused(arg1:boolean):Promise<void>;
+
+export function StartCapture(arg1:string):Promise<void>;
+
+export function StopCapture():Promise<void>;

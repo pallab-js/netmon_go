@@ -228,3 +228,48 @@ func (a *App) ExportCSV(from, to int64) (string, error) {
 	w.Flush()
 	return path, w.Error()
 }
+
+
+// GetPackets returns recent packets
+func (a *App) GetPackets(filter string, limit int) []model.Packet {
+	if a.hub == nil {
+		return nil
+	}
+	return a.hub.GetPackets(filter, limit)
+}
+
+// StartCapture starts packet capture with optional filter
+func (a *App) StartCapture(filter string) error {
+	if a.hub == nil {
+		return fmt.Errorf("monitor not ready")
+	}
+	return a.hub.StartCapture(filter)
+}
+
+// StopCapture stops packet capture
+func (a *App) StopCapture() error {
+	if a.hub == nil {
+		return fmt.Errorf("monitor not ready")
+	}
+	return a.hub.StopCapture()
+}
+
+// SaveCapturePcap saves current capture to a pcap file
+func (a *App) SaveCapturePcap() (string, error) {
+	if a.hub == nil {
+		return "", fmt.Errorf("monitor not ready")
+	}
+	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{
+		Title:           "Save capture as PCAP",
+		DefaultFilename: "netscope-" + time.Now().Format("20060102-1504") + ".pcap",
+		Filters:         []runtime.FileFilter{{DisplayName: "PCAP", Pattern: "*.pcap"}},
+	})
+	if err != nil {
+		return "", err
+	}
+	if path == "" {
+		return "", nil
+	}
+	return path, a.hub.SaveCapturePcap(path)
+}
+

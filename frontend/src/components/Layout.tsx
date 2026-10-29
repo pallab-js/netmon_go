@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { useState } from 'react'
 import {
   Activity,
+  FileSearch,
   Cable,
   ChevronDown,
   History,
@@ -20,6 +21,7 @@ const NAV = [
   { id: 'history', label: 'History', icon: History },
   { id: 'devices', label: 'Devices', icon: Network },
   { id: 'connections', label: 'Connections', icon: Cable },
+  { id: 'packets', label: 'Packets', icon: FileSearch },
   { id: 'settings', label: 'Settings', icon: Settings },
 ] as const
 
@@ -28,6 +30,7 @@ const TITLES: Record<Page, { title: string; sub: string }> = {
   history: { title: 'History', sub: 'Rolled-up traffic, latency and packet loss' },
   devices: { title: 'Devices', sub: 'Hosts discovered on your local network' },
   connections: { title: 'Connections', sub: 'Active sockets belonging to your user' },
+  packets: { title: 'Packets', sub: 'Live packet capture and inspection' },
   settings: { title: 'Settings', sub: 'Storage, retention and interface' },
 }
 

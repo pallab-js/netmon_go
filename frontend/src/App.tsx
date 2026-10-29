@@ -15,6 +15,7 @@ import { HistoryPage } from './pages/History'
 import { Devices } from './pages/Devices'
 import { Connections } from './pages/Connections'
 import { SettingsPage } from './pages/Settings'
+import { Packets } from './pages/Packets'
 import type { Alert, Device, Page, ScanProgress, Snapshot, ToastKind, ToastMsg } from './lib/types'
 
 const alertTone = (kind: string): ToastKind => {
@@ -120,6 +121,7 @@ function App() {
           <Devices devices={devices} scan={scan} onScan={scanNow} onToast={notify} />
         ) : null}
         {page === 'connections' ? <Connections snap={snap} onToast={notify} /> : null}
+        {page === 'packets' ? <Packets snap={snap} onToast={notify} /> : null}
         {page === 'settings' ? <SettingsPage snap={snap} onToast={notify} /> : null}
       </Layout>
       <Toasts toasts={toasts} onDismiss={dismiss} />
