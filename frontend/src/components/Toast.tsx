@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { AlertTriangle, CheckCircle2, Info, X, XCircle } from 'lucide-react'
 import type { ToastMsg } from '../lib/types'
 
@@ -12,14 +12,42 @@ const style = {
 function Item({ toast, onDismiss }: { toast: ToastMsg; onDismiss: (id: number) => void }) {
   const s = style[toast.kind]
   const Icon = s.icon
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const remainingRef = useRef(6000)
+  const startRef = useRef(Date.now())
+
+  const startTimer = () => {
+    startRef.current = Date.now()
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => onDismiss(toast.id), remainingRef.current)
+  }
+
+  const pauseTimer = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
+      timerRef.current = null
+      remainingRef.current -= Date.now() - startRef.current
+    }
+  }
+
   useEffect(() => {
-    const timer = setTimeout(() => onDismiss(toast.id), 6000)
-    return () => clearTimeout(timer)
+    startTimer()
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toast.id])
 
   return (
-    <div className={`card ${s.border} flex w-80 items-start gap-3 bg-panel2 p-3 shadow-xl`}>
+    <div
+      className={`card ${s.border} flex w-80 items-start gap-3 bg-panel2 p-3 shadow-xl`}
+      onMouseEnter={pauseTimer}
+      onMouseLeave={startTimer}
+      onFocus={pauseTimer}
+      onBlur={startTimer}
+      role="status"
+      aria-live="polite"
+    >
       <Icon size={16} className={`${s.color} mt-0.5 shrink-0`} />
       <p className="flex-1 text-xs leading-relaxed text-ink">{toast.message}</p>
       <button

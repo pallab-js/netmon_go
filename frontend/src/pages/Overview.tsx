@@ -1,24 +1,33 @@
 import { Link2, Network, WifiOff } from 'lucide-react'
 import { Kpi } from '../components/Kpi'
 import { TimeChart } from '../components/Chart'
-import type { Device, Snapshot } from '../lib/types'
+import type { Device, Page, Snapshot } from '../lib/types'
 import { formatLoss, formatMs, formatRate, formatSpeed, ago, shortMac } from '../lib/format'
 
 function Empty({ text }: { text: string }) {
   return <div className="flex h-40 items-center justify-center text-xs text-muted">{text}</div>
 }
 
-export function Overview({ snap, devices }: { snap: Snapshot | null; devices: Device[] }) {
+export function Overview({ snap, devices, onPage }: { snap: Snapshot | null; devices: Device[]; onPage?: (p: Page) => void }) {
   const traffic = snap?.traffic ?? []
   const latency = snap?.latency ?? []
   const conns = snap?.topConns ?? []
   const online = devices.filter((d) => d.online).slice(0, 5)
+  const onlineMore = Math.max(0, devices.filter((d) => d.online).length - 5)
 
   const trafficData = [traffic.map((p) => p.t), traffic.map((p) => p.rx), traffic.map((p) => p.tx)]
   const latencyData = [latency.map((p) => p.t), latency.map((p) => p.ms)]
 
   return (
     <div className="flex flex-col gap-4">
+      {snap?.linkUp === false ? (
+        <div className="flex items-center gap-2 rounded-lg border border-bad/40 bg-bad/10 px-4 py-2 text-xs text-bad">
+          <WifiOff size={14} />
+          <span className="font-medium">Link is down</span>
+          <span className="text-bad/80">— sampling paused until it returns</span>
+        </div>
+      ) : null}
+
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <Kpi
           label="Download"
@@ -137,7 +146,14 @@ export function Overview({ snap, devices }: { snap: Snapshot | null; devices: De
         <section className="card">
           <div className="flex items-center justify-between px-4 pt-3.5 pb-2">
             <h2 className="text-[13px] font-medium">Top connections</h2>
-            <span className="text-[11px] text-muted">{snap?.conns ?? 0} open</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-muted">{snap?.conns ?? 0} open</span>
+              {onPage ? (
+                <button onClick={() => onPage('connections')} className="text-[11px] text-accent hover:underline">
+                  View all →
+                </button>
+              ) : null}
+            </div>
           </div>
           {conns.length === 0 ? (
             <Empty text="No active connections" />
@@ -173,9 +189,16 @@ export function Overview({ snap, devices }: { snap: Snapshot | null; devices: De
         <section className="card">
           <div className="flex items-center justify-between px-4 pt-3.5 pb-2">
             <h2 className="text-[13px] font-medium">Devices online</h2>
-            <span className="flex items-center gap-1 text-[11px] text-muted">
-              <Network size={11} /> {snap?.devicesOnline ?? 0} of {snap?.devicesTotal ?? 0}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-1 text-[11px] text-muted">
+                <Network size={11} /> {snap?.devicesOnline ?? 0} of {snap?.devicesTotal ?? 0}
+              </span>
+              {onPage ? (
+                <button onClick={() => onPage('devices')} className="text-[11px] text-accent hover:underline">
+                  View all →
+                </button>
+              ) : null}
+            </div>
           </div>
           {online.length === 0 ? (
             <Empty text="No devices discovered yet" />
@@ -190,13 +213,11 @@ export function Overview({ snap, devices }: { snap: Snapshot | null; devices: De
                   <span className="w-16 text-right text-muted/70">{ago(d.lastSeen)}</span>
                 </li>
               ))}
+              {onlineMore > 0 ? (
+                <li className="px-4 py-1.5 text-center text-[10px] text-muted">+{onlineMore} more online</li>
+              ) : null}
             </ul>
           )}
-          {snap?.linkUp === false ? (
-            <div className="flex items-center gap-2 border-t border-line px-4 py-2 text-[11px] text-bad">
-              <WifiOff size={12} /> link is down — sampling paused until it returns
-            </div>
-          ) : null}
         </section>
       </div>
     </div>

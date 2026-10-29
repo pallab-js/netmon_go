@@ -45,13 +45,13 @@ function App() {
   useEffect(() => {
     GetStatus()
       .then((s) => setStatus(s ?? ''))
-      .catch(() => undefined)
+      .catch((err) => notify('error', `Status check failed: ${String(err)}`))
     GetSnapshot()
       .then((s) => s && setSnap(s))
-      .catch(() => undefined)
+      .catch((err) => notify('error', `Could not load snapshot: ${String(err)}`))
     ListDevices()
       .then((d) => setDevices(d ?? []))
-      .catch(() => undefined)
+      .catch((err) => notify('error', `Could not load devices: ${String(err)}`))
 
     const offTick = EventsOn('telemetry:tick', (s: Snapshot) => setSnap(s))
     const offDevices = EventsOn('devices:update', (d: Device[]) => setDevices(d ?? []))
@@ -99,7 +99,7 @@ function App() {
         onIface={changeInterface}
         status={status}
       >
-        {page === 'overview' ? <Overview snap={snap} devices={devices} /> : null}
+        {page === 'overview' ? <Overview snap={snap} devices={devices} onPage={setPage} /> : null}
         {page === 'history' ? <HistoryPage onToast={notify} /> : null}
         {page === 'devices' ? (
           <Devices devices={devices} scan={scan} onScan={scanNow} onToast={notify} />

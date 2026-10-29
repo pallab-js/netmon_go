@@ -26,11 +26,13 @@ export function Devices({ devices, scan, onScan }: Props) {
         </div>
         <div className="ml-auto flex items-center gap-3">
           {scan.running ? (
-            <div className="flex w-40 items-center gap-2">
+            <div className="flex w-48 items-center gap-2">
               <div className="h-1 flex-1 overflow-hidden rounded-full bg-line">
                 <div className="h-full bg-accent transition-all" style={{ width: `${pct}%` }} />
               </div>
-              <span className="text-[10px] text-muted">{pct}%</span>
+              <span className="text-[10px] text-muted whitespace-nowrap">
+                {scan.done}/{scan.total} ({pct}%)
+              </span>
             </div>
           ) : null}
           <button
@@ -46,9 +48,18 @@ export function Devices({ devices, scan, onScan }: Props) {
 
       <section className="card overflow-hidden">
         {devices.length === 0 ? (
-          <div className="flex h-56 flex-col items-center justify-center gap-1 text-xs text-muted">
+          <div className="flex h-56 flex-col items-center justify-center gap-2 text-xs text-muted">
+            <Radar size={18} className="text-muted/60" />
             <span>No devices discovered yet.</span>
             <span>The first sweep runs a few seconds after launch.</span>
+            <button
+              onClick={onScan}
+              disabled={scan.running}
+              className="mt-2 flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/10 px-2.5 py-1.5 text-[11px] text-accent transition-colors hover:bg-accent/15 disabled:opacity-40"
+            >
+              <Radar size={12} className={scan.running ? 'animate-spin' : ''} />
+              {scan.running ? 'Scanning…' : 'Run scan now'}
+            </button>
           </div>
         ) : (
           <div className="overflow-x-auto">

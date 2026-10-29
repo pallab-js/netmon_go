@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useState } from 'react'
 import {
   Activity,
   Cable,
@@ -9,6 +10,7 @@ import {
   Play,
   Radar,
   Settings,
+  X,
 } from 'lucide-react'
 import type { Page, Snapshot } from '../lib/types'
 import { clock } from '../lib/format'
@@ -41,9 +43,13 @@ type Props = {
   children: ReactNode
 }
 
-function Brand() {
+function Brand({ onClick }: { onClick?: () => void }) {
   return (
-    <div className="flex items-center gap-2.5 px-4 py-5">
+    <button
+      onClick={onClick}
+      className="flex w-full items-center gap-2.5 px-4 py-5 text-left transition-opacity hover:opacity-80"
+      aria-label="Go to overview"
+    >
       <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
         <rect x="0.5" y="0.5" width="25" height="25" rx="7" fill="#0f2b2a" stroke="#2dd4bf" strokeOpacity="0.5" />
         <path
@@ -59,11 +65,12 @@ function Brand() {
         <div className="text-sm font-semibold tracking-tight">NetScope</div>
         <div className="text-[10px] tracking-wide text-muted uppercase">network monitor</div>
       </div>
-    </div>
+    </button>
   )
 }
 
 export function Layout({ page, onPage, snap, paused, scanning, onPause, onIface, status, children }: Props) {
+  const [statusDismissed, setStatusDismissed] = useState(false)
   const live = !paused && snap?.linkUp !== false && Boolean(snap)
   const pill = !snap
     ? { text: 'Connecting', cls: 'text-muted', dot: 'bg-muted' }
@@ -73,10 +80,13 @@ export function Layout({ page, onPage, snap, paused, scanning, onPause, onIface,
         ? { text: 'Link down', cls: 'text-bad', dot: 'bg-bad' }
         : { text: 'Live', cls: 'text-accent', dot: 'bg-accent' }
 
+  const ifaces = snap?.ifaces && snap.ifaces.length > 0 ? snap.ifaces : []
+  const hasIface = Boolean(snap?.iface.name)
+
   return (
     <div className="flex h-full w-full">
       <aside className="flex w-56 shrink-0 flex-col border-r border-line bg-panel">
-        <Brand />
+        <Brand onClick={() => onPage('overview')} />
 
         <nav className="flex flex-col gap-0.5 px-2" aria-label="Main">
           {NAV.map(({ id, label, icon: Icon }) => {
@@ -118,7 +128,7 @@ export function Layout({ page, onPage, snap, paused, scanning, onPause, onIface,
           </div>
           <div className="flex justify-between gap-2">
             <span>Updated</span>
-            <span className="text-ink/80">{clock(snap?.updatedAt ?? 0)}</span>
+            <span className="text-ink/80">{paused ? 'Paused' : clock(snap?.updatedAt ?? 0)}</span>
           </div>
         </div>
       </aside>
@@ -133,16 +143,21 @@ export function Layout({ page, onPage, snap, paused, scanning, onPause, onIface,
           <div className="ml-auto flex items-center gap-2">
             <div className="relative">
               <select
-                value={snap?.iface.name || ''}
+                value={hasIface ? snap?.iface.name : ''}
                 onChange={(e) => onIface(e.target.value)}
                 aria-label="Interface"
-                className="appearance-none rounded-lg border border-line bg-panel2 py-1.5 pr-7 pl-2.5 text-xs text-ink outline-none focus:border-accent/60"
+                disabled={!hasIface && ifaces.length === 0}
+                className="appearance-none rounded-lg border border-line bg-panel2 py-1.5 pr-7 pl-2.5 text-xs text-ink outline-none focus:border-accent/60 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {(snap?.ifaces?.length ? snap.ifaces : ['']).map((name) => (
-                  <option key={name} value={name}>
-                    {name || 'no interface'}
-                  </option>
-                ))}
+                {ifaces.length === 0 ? (
+                  <option value="">{hasIface ? snap?.iface.name : 'No interfaces'}</option>
+                ) : (
+                  ifaces.map((name) => (
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
+                  ))
+                )}
               </select>
               <ChevronDown size={12} className="pointer-events-none absolute top-1/2 right-2 -translate-y-1/2 text-muted" />
             </div>
@@ -164,8 +179,17 @@ export function Layout({ page, onPage, snap, paused, scanning, onPause, onIface,
           </div>
         </header>
 
-        {status ? (
-          <div className="border-b border-bad/30 bg-bad/10 px-6 py-2 text-xs text-bad">{status}</div>
+        {status && !statusDismissed ? (
+          <div className="flex items-center gap-3 border-b border-bad/30 bg-bad/10 px-6 py-2 text-xs text-bad">
+            <span className="flex-1">{status}</span>
+            <button
+              onClick={() => setStatusDismissed(true)}
+              className="text-bad/70 transition-colors hover:text-bad"
+              aria-label="Dismiss status"
+            >
+              <X size={14} />
+            </button>
+          </div>
         ) : null}
 
         <main className="min-h-0 flex-1 overflow-y-auto px-6 py-5">{children}</main>
