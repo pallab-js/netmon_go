@@ -72,6 +72,21 @@ function App() {
 
   const paused = snap?.paused ?? false
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      if (e.key === 'p') togglePause()
+      if (e.key === 's') scanNow()
+      if (e.key === '1') setPage('overview')
+      if (e.key === '2') setPage('history')
+      if (e.key === '3') setPage('devices')
+      if (e.key === '4') setPage('connections')
+      if (e.key === '5') setPage('settings')
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [paused])
+
   const togglePause = () => {
     SetPaused(!paused).catch((err) => notify('error', `Could not change sampling: ${String(err)}`))
   }

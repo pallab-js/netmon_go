@@ -3,6 +3,7 @@ package hub
 
 import (
 	"fmt"
+	"regexp"
 	"log"
 	"sort"
 	"strings"
@@ -13,6 +14,8 @@ import (
 	"netscope/internal/model"
 	"netscope/internal/store"
 )
+
+var validIfaceName = regexp.MustCompile(`^[A-Za-z0-9_.:-]{1,64}$`)
 
 const (
 	trafficRing    = 180 // 3 minutes at 1 Hz
@@ -605,6 +608,9 @@ func (h *Hub) SetPaused(p bool) {
 func (h *Hub) SetInterface(name string) error {
 	if name == "" {
 		return fmt.Errorf("interface name is empty")
+	}
+	if !validIfaceName.MatchString(name) {
+		return fmt.Errorf("invalid interface name %q", name)
 	}
 	info := collect.Info(name)
 	if info.Name == "" {
