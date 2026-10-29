@@ -1,0 +1,819 @@
+{
+  "communities": {
+    "0": [
+      "frontend_src_app",
+      "frontend_src_app_alerttone",
+      "frontend_src_app_app",
+      "frontend_src_components_chart",
+      "frontend_src_components_chart_props",
+      "frontend_src_components_chart_seriesdef",
+      "frontend_src_components_chart_spark",
+      "frontend_src_components_chart_sparkprops",
+      "frontend_src_components_chart_timechart",
+      "frontend_src_components_kpi",
+      "frontend_src_components_kpi_kpi",
+      "frontend_src_components_kpi_props",
+      "frontend_src_components_layout",
+      "frontend_src_components_layout_brand",
+      "frontend_src_components_layout_layout",
+      "frontend_src_components_layout_nav",
+      "frontend_src_components_layout_props",
+      "frontend_src_components_layout_titles",
+      "frontend_src_components_toast",
+      "frontend_src_components_toast_item",
+      "frontend_src_components_toast_style",
+      "frontend_src_components_toast_toasts",
+      "frontend_src_lib_format",
+      "frontend_src_lib_format_ago",
+      "frontend_src_lib_format_bytes",
+      "frontend_src_lib_format_clock",
+      "frontend_src_lib_format_datetime",
+      "frontend_src_lib_format_formatbytes",
+      "frontend_src_lib_format_formatcount",
+      "frontend_src_lib_format_formatloss",
+      "frontend_src_lib_format_formatms",
+      "frontend_src_lib_format_formatrate",
+      "frontend_src_lib_format_formatspeed",
+      "frontend_src_lib_format_shortmac",
+      "frontend_src_lib_format_si",
+      "frontend_src_lib_types",
+      "frontend_src_lib_types_alert",
+      "frontend_src_lib_types_conn",
+      "frontend_src_lib_types_device",
+      "frontend_src_lib_types_eventrow",
+      "frontend_src_lib_types_history",
+      "frontend_src_lib_types_ifaceinfo",
+      "frontend_src_lib_types_latencypoint",
+      "frontend_src_lib_types_latencyrow",
+      "frontend_src_lib_types_page",
+      "frontend_src_lib_types_scanprogress",
+      "frontend_src_lib_types_settings",
+      "frontend_src_lib_types_snapshot",
+      "frontend_src_lib_types_toastkind",
+      "frontend_src_lib_types_toastmsg",
+      "frontend_src_lib_types_trafficpoint",
+      "frontend_src_lib_types_trafficrow",
+      "frontend_src_main",
+      "frontend_src_main_container",
+      "frontend_src_main_root",
+      "frontend_src_pages_connections",
+      "frontend_src_pages_connections_connections",
+      "frontend_src_pages_connections_props",
+      "frontend_src_pages_connections_statetone",
+      "frontend_src_pages_devices",
+      "frontend_src_pages_devices_devices",
+      "frontend_src_pages_devices_props",
+      "frontend_src_pages_history",
+      "frontend_src_pages_history_eventtone",
+      "frontend_src_pages_history_historypage",
+      "frontend_src_pages_history_props",
+      "frontend_src_pages_history_rangeid",
+      "frontend_src_pages_history_ranges",
+      "frontend_src_pages_overview",
+      "frontend_src_pages_overview_empty",
+      "frontend_src_pages_overview_overview",
+      "frontend_src_pages_settings",
+      "frontend_src_pages_settings_props",
+      "frontend_src_pages_settings_row",
+      "frontend_src_pages_settings_settingspage",
+      "frontend_src_style",
+      "frontend_wailsjs_go_main_app",
+      "frontend_wailsjs_go_main_app_clearhistory",
+      "frontend_wailsjs_go_main_app_exportcsv",
+      "frontend_wailsjs_go_main_app_gethistory",
+      "frontend_wailsjs_go_main_app_getsettings",
+      "frontend_wailsjs_go_main_app_getsnapshot",
+      "frontend_wailsjs_go_main_app_getstatus",
+      "frontend_wailsjs_go_main_app_listconnections",
+      "frontend_wailsjs_go_main_app_listdevices",
+      "frontend_wailsjs_go_main_app_listevents",
+      "frontend_wailsjs_go_main_app_opendatafolder",
+      "frontend_wailsjs_go_main_app_scanlan",
+      "frontend_wailsjs_go_main_app_setinterface",
+      "frontend_wailsjs_go_main_app_setpaused",
+      "frontend_wailsjs_runtime_runtime_eventson",
+      "ref_lucide_react",
+      "ref_react",
+      "ref_react_dom",
+      "ref_uplot"
+    ],
+    "1": [
+      "go_pkg_github_com_prometheus_community_pro_bing",
+      "go_pkg_io",
+      "go_pkg_log",
+      "go_type_sync_rwmutex",
+      "go_type_time_duration",
+      "hub_hub_accumulatelatencylocked",
+      "hub_hub_conns",
+      "hub_hub_devices",
+      "hub_hub_deviceslocked",
+      "hub_hub_emitevent",
+      "hub_hub_flush",
+      "hub_hub_flushlatency",
+      "hub_hub_flushtraffic",
+      "hub_hub_onlinecountlocked",
+      "hub_hub_paused",
+      "hub_hub_probelatency",
+      "hub_hub_push",
+      "hub_hub_raise",
+      "hub_hub_refresharp",
+      "hub_hub_run",
+      "hub_hub_sample",
+      "hub_hub_sampleconns",
+      "hub_hub_scan",
+      "hub_hub_scanlan",
+      "hub_hub_scanning",
+      "hub_hub_setinterface",
+      "hub_hub_setpaused",
+      "hub_hub_snapshot",
+      "hub_hub_snapshot_e94025",
+      "hub_hub_start",
+      "hub_hub_stop",
+      "hub_latencybucket",
+      "hub_latencyflush",
+      "hub_trafficbucket",
+      "internal_collect_iface_gateway",
+      "internal_collect_iface_info",
+      "internal_collect_iface_names",
+      "internal_collect_lan_arp",
+      "internal_collect_lan_sweep",
+      "internal_collect_latency",
+      "internal_collect_latency_go_collect_probe",
+      "internal_collect_latency_probelatency",
+      "internal_hub_hub",
+      "internal_hub_hub_appendring",
+      "internal_hub_hub_displayname",
+      "internal_hub_hub_go_hub_hub",
+      "internal_hub_hub_new",
+      "internal_model_model",
+      "internal_model_model_go_model_conn",
+      "internal_model_model_go_model_device",
+      "internal_model_model_go_model_ifaceinfo",
+      "internal_model_model_go_model_latencypoint",
+      "internal_model_model_go_model_snapshot",
+      "internal_model_model_go_model_trafficpoint",
+      "model_alert",
+      "model_scanprogress",
+      "netmon_go_app_listconnections"
+    ],
+    "2": [
+      "app",
+      "collect_cacheentry",
+      "collect_ifacesampler_reset",
+      "collect_ifacesampler_sample",
+      "collect_lan_lookup",
+      "collect_sample",
+      "go_pkg_bufio",
+      "go_pkg_context",
+      "go_pkg_database_sql",
+      "go_pkg_encoding_csv",
+      "go_pkg_fmt",
+      "go_pkg_github_com_shirou_gopsutil_v4_net",
+      "go_pkg_github_com_shirou_gopsutil_v4_process",
+      "go_pkg_github_com_wailsapp_wails_v2_pkg_runtime",
+      "go_pkg_modernc_org_sqlite",
+      "go_pkg_net",
+      "go_pkg_os",
+      "go_pkg_path_filepath",
+      "go_pkg_sort",
+      "go_pkg_strconv",
+      "go_pkg_strings",
+      "go_pkg_sync",
+      "go_pkg_sync_atomic",
+      "go_pkg_testing",
+      "go_pkg_time",
+      "go_type_sync_mutex",
+      "go_type_testing_t",
+      "go_type_time_time",
+      "internal_collect_conns",
+      "internal_collect_conns_connections",
+      "internal_collect_conns_procname",
+      "internal_collect_conns_proto",
+      "internal_collect_iface",
+      "internal_collect_iface_defaultinterface",
+      "internal_collect_iface_go_collect_ifacesampler",
+      "internal_collect_iface_hextoip",
+      "internal_collect_iface_hostname",
+      "internal_collect_iface_ipv4",
+      "internal_collect_iface_newifacesampler",
+      "internal_collect_iface_rate",
+      "internal_collect_iface_sweephosts",
+      "internal_collect_iface_test",
+      "internal_collect_iface_test_testrate",
+      "internal_collect_lan",
+      "internal_collect_lan_go_collect_lan",
+      "internal_collect_lan_newlan",
+      "internal_store_store",
+      "internal_store_store_test",
+      "internal_store_store_test_opentemp",
+      "internal_store_store_test_testlatencyanddevices",
+      "internal_store_store_test_testtrafficrollupandretention"
+    ],
+    "3": [
+      "go_type_context_context",
+      "go_type_database_sql_db",
+      "hub_hub_events",
+      "hub_hub_history",
+      "internal_model_model_go_model_event",
+      "internal_model_model_go_model_history",
+      "internal_model_model_go_model_latencyrow",
+      "internal_model_model_go_model_settings",
+      "internal_model_model_go_model_trafficrow",
+      "internal_store_store_boolint",
+      "internal_store_store_defaultpath",
+      "internal_store_store_go_store_store",
+      "internal_store_store_now",
+      "internal_store_store_open",
+      "netmon_go_app",
+      "netmon_go_app_clearhistory",
+      "netmon_go_app_exportcsv",
+      "netmon_go_app_gethistory",
+      "netmon_go_app_getsettings",
+      "netmon_go_app_getsnapshot",
+      "netmon_go_app_getstatus",
+      "netmon_go_app_listdevices",
+      "netmon_go_app_listevents",
+      "netmon_go_app_opendatafolder",
+      "netmon_go_app_scanlan",
+      "netmon_go_app_setinterface",
+      "netmon_go_app_setpaused",
+      "netmon_go_app_shutdown",
+      "netmon_go_app_startup",
+      "store_store_clear",
+      "store_store_close",
+      "store_store_devices",
+      "store_store_ensureinterface",
+      "store_store_events",
+      "store_store_flushlatency",
+      "store_store_flushtraffic",
+      "store_store_getmeta",
+      "store_store_insertevent",
+      "store_store_latency",
+      "store_store_migrate",
+      "store_store_path",
+      "store_store_prune",
+      "store_store_setmeta",
+      "store_store_size",
+      "store_store_traffic",
+      "store_store_upsertdevices"
+    ],
+    "4": [
+      "frontend_wailsjs_go_main_app_d",
+      "frontend_wailsjs_go_models",
+      "frontend_wailsjs_go_models_conn",
+      "frontend_wailsjs_go_models_conn_constructor",
+      "frontend_wailsjs_go_models_conn_createfrom",
+      "frontend_wailsjs_go_models_device",
+      "frontend_wailsjs_go_models_device_constructor",
+      "frontend_wailsjs_go_models_device_createfrom",
+      "frontend_wailsjs_go_models_event",
+      "frontend_wailsjs_go_models_event_constructor",
+      "frontend_wailsjs_go_models_event_createfrom",
+      "frontend_wailsjs_go_models_history",
+      "frontend_wailsjs_go_models_history_constructor",
+      "frontend_wailsjs_go_models_history_convertvalues",
+      "frontend_wailsjs_go_models_history_createfrom",
+      "frontend_wailsjs_go_models_ifaceinfo",
+      "frontend_wailsjs_go_models_ifaceinfo_constructor",
+      "frontend_wailsjs_go_models_ifaceinfo_createfrom",
+      "frontend_wailsjs_go_models_latencypoint",
+      "frontend_wailsjs_go_models_latencypoint_constructor",
+      "frontend_wailsjs_go_models_latencypoint_createfrom",
+      "frontend_wailsjs_go_models_latencyrow",
+      "frontend_wailsjs_go_models_latencyrow_constructor",
+      "frontend_wailsjs_go_models_latencyrow_createfrom",
+      "frontend_wailsjs_go_models_model",
+      "frontend_wailsjs_go_models_settings",
+      "frontend_wailsjs_go_models_settings_constructor",
+      "frontend_wailsjs_go_models_settings_createfrom",
+      "frontend_wailsjs_go_models_snapshot",
+      "frontend_wailsjs_go_models_snapshot_constructor",
+      "frontend_wailsjs_go_models_snapshot_convertvalues",
+      "frontend_wailsjs_go_models_snapshot_createfrom",
+      "frontend_wailsjs_go_models_trafficpoint",
+      "frontend_wailsjs_go_models_trafficpoint_constructor",
+      "frontend_wailsjs_go_models_trafficpoint_createfrom",
+      "frontend_wailsjs_go_models_trafficrow",
+      "frontend_wailsjs_go_models_trafficrow_constructor",
+      "frontend_wailsjs_go_models_trafficrow_createfrom"
+    ],
+    "5": [
+      "frontend_package",
+      "frontend_package_dependencies",
+      "frontend_package_dependencies_lucide_react",
+      "frontend_package_dependencies_react",
+      "frontend_package_dependencies_react_dom",
+      "frontend_package_dependencies_uplot",
+      "frontend_package_devdependencies",
+      "frontend_package_devdependencies_tailwindcss",
+      "frontend_package_devdependencies_tailwindcss_vite",
+      "frontend_package_devdependencies_types_react",
+      "frontend_package_devdependencies_types_react_dom",
+      "frontend_package_devdependencies_typescript",
+      "frontend_package_devdependencies_vite",
+      "frontend_package_devdependencies_vitejs_plugin_react",
+      "frontend_package_name",
+      "frontend_package_private",
+      "frontend_package_scripts",
+      "frontend_package_scripts_build",
+      "frontend_package_scripts_dev",
+      "frontend_package_scripts_preview",
+      "frontend_package_type",
+      "frontend_package_version",
+      "frontend_vite_config",
+      "ref_tailwindcss",
+      "ref_tailwindcss_vite",
+      "ref_types_react",
+      "ref_types_react_dom",
+      "ref_typescript",
+      "ref_vite",
+      "ref_vitejs_plugin_react"
+    ],
+    "6": [
+      "frontend_tsconfig",
+      "frontend_tsconfig_compileroptions",
+      "frontend_tsconfig_compileroptions_allowjs",
+      "frontend_tsconfig_compileroptions_allowsyntheticdefaultimports",
+      "frontend_tsconfig_compileroptions_esmoduleinterop",
+      "frontend_tsconfig_compileroptions_forceconsistentcasinginfilenames",
+      "frontend_tsconfig_compileroptions_isolatedmodules",
+      "frontend_tsconfig_compileroptions_jsx",
+      "frontend_tsconfig_compileroptions_lib",
+      "frontend_tsconfig_compileroptions_module",
+      "frontend_tsconfig_compileroptions_moduleresolution",
+      "frontend_tsconfig_compileroptions_noemit",
+      "frontend_tsconfig_compileroptions_resolvejsonmodule",
+      "frontend_tsconfig_compileroptions_skiplibcheck",
+      "frontend_tsconfig_compileroptions_strict",
+      "frontend_tsconfig_compileroptions_target",
+      "frontend_tsconfig_compileroptions_usedefineforclassfields",
+      "frontend_tsconfig_include",
+      "frontend_tsconfig_references"
+    ],
+    "7": [
+      "frontend_wailsjs_runtime_package",
+      "frontend_wailsjs_runtime_package_author",
+      "frontend_wailsjs_runtime_package_bugs",
+      "frontend_wailsjs_runtime_package_bugs_url",
+      "frontend_wailsjs_runtime_package_description",
+      "frontend_wailsjs_runtime_package_homepage",
+      "frontend_wailsjs_runtime_package_keywords",
+      "frontend_wailsjs_runtime_package_license",
+      "frontend_wailsjs_runtime_package_main",
+      "frontend_wailsjs_runtime_package_name",
+      "frontend_wailsjs_runtime_package_repository",
+      "frontend_wailsjs_runtime_package_repository_type",
+      "frontend_wailsjs_runtime_package_repository_url",
+      "frontend_wailsjs_runtime_package_scripts",
+      "frontend_wailsjs_runtime_package_types",
+      "frontend_wailsjs_runtime_package_version"
+    ],
+    "8": [
+      "wails",
+      "wails_author",
+      "wails_author_email",
+      "wails_author_name",
+      "wails_frontend_build",
+      "wails_frontend_dev_serverurl",
+      "wails_frontend_dev_watcher",
+      "wails_frontend_install",
+      "wails_name",
+      "wails_outputfilename",
+      "wails_schema"
+    ],
+    "9": [
+      "frontend_wailsjs_runtime_runtime",
+      "frontend_wailsjs_runtime_runtime_environment",
+      "frontend_wailsjs_runtime_runtime_eventsemit",
+      "frontend_wailsjs_runtime_runtime_isnotificationavailable",
+      "frontend_wailsjs_runtime_runtime_quit",
+      "frontend_wailsjs_runtime_runtime_removedeliverednotification",
+      "frontend_wailsjs_runtime_runtime_windowisfullscreen",
+      "frontend_wailsjs_runtime_runtime_windowminimise",
+      "frontend_wailsjs_runtime_runtime_windowsetminsize",
+      "frontend_wailsjs_runtime_runtime_windowtogglemaximise"
+    ],
+    "10": [
+      "frontend_wailsjs_runtime_runtime_d",
+      "frontend_wailsjs_runtime_runtime_d_environmentinfo",
+      "frontend_wailsjs_runtime_runtime_d_notificationaction",
+      "frontend_wailsjs_runtime_runtime_d_notificationcategory",
+      "frontend_wailsjs_runtime_runtime_d_notificationoptions",
+      "frontend_wailsjs_runtime_runtime_d_position",
+      "frontend_wailsjs_runtime_runtime_d_screen",
+      "frontend_wailsjs_runtime_runtime_d_size"
+    ],
+    "11": [
+      "app_newapp",
+      "go_pkg_embed",
+      "go_pkg_github_com_wailsapp_wails_v2",
+      "go_pkg_github_com_wailsapp_wails_v2_pkg_options",
+      "go_pkg_github_com_wailsapp_wails_v2_pkg_options_assetserver",
+      "main",
+      "main_main"
+    ],
+    "12": [
+      "frontend_tsconfig_node",
+      "frontend_tsconfig_node_compileroptions",
+      "frontend_tsconfig_node_compileroptions_allowsyntheticdefaultimports",
+      "frontend_tsconfig_node_compileroptions_composite",
+      "frontend_tsconfig_node_compileroptions_module",
+      "frontend_tsconfig_node_compileroptions_moduleresolution",
+      "frontend_tsconfig_node_include"
+    ],
+    "13": [
+      "frontend_wailsjs_runtime_runtime_eventsonce",
+      "frontend_wailsjs_runtime_runtime_eventsonmultiple"
+    ],
+    "14": [
+      "frontend_src_vite_env_d"
+    ],
+    "15": [
+      "frontend_wailsjs_runtime_runtime_browseropenurl"
+    ],
+    "16": [
+      "frontend_wailsjs_runtime_runtime_canresolvefilepaths"
+    ],
+    "17": [
+      "frontend_wailsjs_runtime_runtime_checknotificationauthorization"
+    ],
+    "18": [
+      "frontend_wailsjs_runtime_runtime_cleanupnotifications"
+    ],
+    "19": [
+      "frontend_wailsjs_runtime_runtime_clipboardgettext"
+    ],
+    "20": [
+      "frontend_wailsjs_runtime_runtime_clipboardsettext"
+    ],
+    "21": [
+      "frontend_wailsjs_runtime_runtime_eventsoff"
+    ],
+    "22": [
+      "frontend_wailsjs_runtime_runtime_eventsoffall"
+    ],
+    "23": [
+      "frontend_wailsjs_runtime_runtime_hide"
+    ],
+    "24": [
+      "frontend_wailsjs_runtime_runtime_initializenotifications"
+    ],
+    "25": [
+      "frontend_wailsjs_runtime_runtime_logdebug"
+    ],
+    "26": [
+      "frontend_wailsjs_runtime_runtime_logerror"
+    ],
+    "27": [
+      "frontend_wailsjs_runtime_runtime_logfatal"
+    ],
+    "28": [
+      "frontend_wailsjs_runtime_runtime_loginfo"
+    ],
+    "29": [
+      "frontend_wailsjs_runtime_runtime_logprint"
+    ],
+    "30": [
+      "frontend_wailsjs_runtime_runtime_logtrace"
+    ],
+    "31": [
+      "frontend_wailsjs_runtime_runtime_logwarning"
+    ],
+    "32": [
+      "frontend_wailsjs_runtime_runtime_onfiledrop"
+    ],
+    "33": [
+      "frontend_wailsjs_runtime_runtime_onfiledropoff"
+    ],
+    "34": [
+      "frontend_wailsjs_runtime_runtime_registernotificationcategory"
+    ],
+    "35": [
+      "frontend_wailsjs_runtime_runtime_removealldeliverednotifications"
+    ],
+    "36": [
+      "frontend_wailsjs_runtime_runtime_removeallpendingnotifications"
+    ],
+    "37": [
+      "frontend_wailsjs_runtime_runtime_removenotification"
+    ],
+    "38": [
+      "frontend_wailsjs_runtime_runtime_removenotificationcategory"
+    ],
+    "39": [
+      "frontend_wailsjs_runtime_runtime_removependingnotification"
+    ],
+    "40": [
+      "frontend_wailsjs_runtime_runtime_requestnotificationauthorization"
+    ],
+    "41": [
+      "frontend_wailsjs_runtime_runtime_resolvefilepaths"
+    ],
+    "42": [
+      "frontend_wailsjs_runtime_runtime_screengetall"
+    ],
+    "43": [
+      "frontend_wailsjs_runtime_runtime_sendnotification"
+    ],
+    "44": [
+      "frontend_wailsjs_runtime_runtime_sendnotificationwithactions"
+    ],
+    "45": [
+      "frontend_wailsjs_runtime_runtime_show"
+    ],
+    "46": [
+      "frontend_wailsjs_runtime_runtime_windowcenter"
+    ],
+    "47": [
+      "frontend_wailsjs_runtime_runtime_windowfullscreen"
+    ],
+    "48": [
+      "frontend_wailsjs_runtime_runtime_windowgetposition"
+    ],
+    "49": [
+      "frontend_wailsjs_runtime_runtime_windowgetsize"
+    ],
+    "50": [
+      "frontend_wailsjs_runtime_runtime_windowhide"
+    ],
+    "51": [
+      "frontend_wailsjs_runtime_runtime_windowismaximised"
+    ],
+    "52": [
+      "frontend_wailsjs_runtime_runtime_windowisminimised"
+    ],
+    "53": [
+      "frontend_wailsjs_runtime_runtime_windowisnormal"
+    ],
+    "54": [
+      "frontend_wailsjs_runtime_runtime_windowmaximise"
+    ],
+    "55": [
+      "frontend_wailsjs_runtime_runtime_windowreload"
+    ],
+    "56": [
+      "frontend_wailsjs_runtime_runtime_windowreloadapp"
+    ],
+    "57": [
+      "frontend_wailsjs_runtime_runtime_windowsetalwaysontop"
+    ],
+    "58": [
+      "frontend_wailsjs_runtime_runtime_windowsetbackgroundcolour"
+    ],
+    "59": [
+      "frontend_wailsjs_runtime_runtime_windowsetdarktheme"
+    ],
+    "60": [
+      "frontend_wailsjs_runtime_runtime_windowsetlighttheme"
+    ],
+    "61": [
+      "frontend_wailsjs_runtime_runtime_windowsetmaxsize"
+    ],
+    "62": [
+      "frontend_wailsjs_runtime_runtime_windowsetposition"
+    ],
+    "63": [
+      "frontend_wailsjs_runtime_runtime_windowsetsize"
+    ],
+    "64": [
+      "frontend_wailsjs_runtime_runtime_windowsetsystemdefaulttheme"
+    ],
+    "65": [
+      "frontend_wailsjs_runtime_runtime_windowsettitle"
+    ],
+    "66": [
+      "frontend_wailsjs_runtime_runtime_windowshow"
+    ],
+    "67": [
+      "frontend_wailsjs_runtime_runtime_windowunfullscreen"
+    ],
+    "68": [
+      "frontend_wailsjs_runtime_runtime_windowunmaximise"
+    ],
+    "69": [
+      "frontend_wailsjs_runtime_runtime_windowunminimise"
+    ],
+    "70": [
+      "pkg_netscope"
+    ]
+  },
+  "cohesion": {
+    "0": 0.054199328107502796,
+    "1": 0.08333333333333333,
+    "2": 0.06431372549019608,
+    "3": 0.057004830917874394,
+    "4": 0.05689900426742532,
+    "5": 0.07126436781609195,
+    "6": 0.10526315789473684,
+    "7": 0.125,
+    "8": 0.18181818181818182,
+    "9": 0.2,
+    "10": 0.25,
+    "11": 0.2857142857142857,
+    "12": 0.2857142857142857,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0
+  },
+  "gods": [
+    {
+      "id": "internal_hub_hub_go_hub_hub",
+      "label": "Hub",
+      "degree": 43
+    },
+    {
+      "id": "internal_store_store_go_store_store",
+      "label": "Store",
+      "degree": 24
+    },
+    {
+      "id": "netmon_go_app",
+      "label": "App",
+      "degree": 20
+    },
+    {
+      "id": "frontend_src_app_app",
+      "label": "App()",
+      "degree": 17
+    },
+    {
+      "id": "frontend_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "frontend_src_pages_history_historypage",
+      "label": "HistoryPage()",
+      "degree": 13
+    },
+    {
+      "id": "frontend_src_pages_overview_overview",
+      "label": "Overview()",
+      "degree": 12
+    },
+    {
+      "id": "internal_hub_hub_new",
+      "label": "New()",
+      "degree": 11
+    },
+    {
+      "id": "ref_react",
+      "label": "react",
+      "degree": 10
+    },
+    {
+      "id": "internal_model_model_go_model_device",
+      "label": "Device",
+      "degree": 9
+    }
+  ],
+  "surprises": [
+    {
+      "source": "App",
+      "target": "Hub",
+      "source_files": [
+        "app.go",
+        "internal/hub/hub.go"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "App",
+      "target": "Store",
+      "source_files": [
+        "app.go",
+        "internal/store/store.go"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "New()",
+      "target": "DefaultInterface()",
+      "source_files": [
+        "internal/hub/hub.go",
+        "internal/collect/iface.go"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `DefaultInterface()` unexpectedly reaches hub `New()`"
+    },
+    {
+      "source": "openTemp()",
+      "target": "Open()",
+      "source_files": [
+        "internal/store/store_test.go",
+        "internal/store/store.go"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "Hub",
+      "target": "IfaceSampler",
+      "source_files": [
+        "internal/hub/hub.go",
+        "internal/collect/iface.go"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Hub` connect `Hub` to `iface.go`, `Store`?",
+      "why": "High betweenness centrality (0.049) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `tailwindcss`, `@types/react`, `@types/react-dom` to the rest of the system?",
+      "why": "5 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `App.tsx` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.054199328107502796 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `react` connect `App.tsx` to `frontend/package.json`?",
+      "why": "High betweenness centrality (0.039) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Hub` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Store` connect `Store` to `Hub`, `iface.go`?",
+      "why": "High betweenness centrality (0.027) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `iface.go` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06431372549019608 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

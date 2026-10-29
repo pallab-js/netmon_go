@@ -42,6 +42,15 @@ type Device struct {
 }
 
 // Snapshot is pushed to the UI once per second.
+type Packet struct {
+	T      int64  `json:"t"`
+	Proto  string `json:"proto"`
+	Src    string `json:"src"`
+	Dst    string `json:"dst"`
+	Length int    `json:"length"`
+	Info   string `json:"info"`
+}
+
 type Snapshot struct {
 	Iface         IfaceInfo      `json:"iface"`
 	Ifaces        []string       `json:"ifaces"`
@@ -58,6 +67,7 @@ type Snapshot struct {
 	Traffic       []TrafficPoint `json:"traffic"`
 	Latency       []LatencyPoint `json:"latency"`
 	TopConns      []Conn         `json:"topConns"`
+	Packets       []Packet       `json:"packets"`
 	UpdatedAt     int64          `json:"updatedAt"`
 }
 

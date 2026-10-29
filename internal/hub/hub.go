@@ -10,6 +10,7 @@ import (
 	"sync"
 	"time"
 
+	"netscope/internal/capture"
 	"netscope/internal/collect"
 	"netscope/internal/model"
 	"netscope/internal/store"
@@ -57,6 +58,8 @@ type Hub struct {
 	traffic  []model.TrafficPoint
 	latency  []model.LatencyPoint
 	conns    []model.Conn
+	packets  []model.Packet
+	capture  *capture.Capturer
 	devices  map[string]model.Device
 	iface    string
 	ifaceID  int64
@@ -106,6 +109,7 @@ func New(st *store.Store, emit func(event string, data ...any)) *Hub {
 		linkUp:         true,
 		sampler:        collect.NewIfaceSampler(),
 		lan:            collect.NewLAN(),
+		packets:        make([]model.Packet, 0, 200),
 		pendingLatency: map[string]*latencyBucket{},
 		stop:           make(chan struct{}),
 		done:           make(chan struct{}),
@@ -128,6 +132,7 @@ func (h *Hub) Start() {
 	h.push()
 	go h.refreshARP()
 	go h.scanLAN()
+	go h.startCapture()
 	go h.run()
 }
 
@@ -177,6 +182,7 @@ func (h *Hub) run() {
 			go h.refreshARP()
 		case <-sweepTick.C:
 			go h.scanLAN()
+	go h.startCapture()
 		case <-pruneTick.C:
 			if err := h.st.Prune(); err != nil {
 				log.Printf("prune: %v", err)
@@ -321,6 +327,28 @@ func (h *Hub) sampleConns() {
 	h.mu.Unlock()
 }
 
+func (h *Hub) startCapture() {
+	h.mu.Lock()
+	if h.capture != nil {
+		h.mu.Unlock()
+		return
+	}
+	c := capture.New(h.iface)
+	h.capture = c
+	h.mu.Unlock()
+	if err := c.Start(""); err != nil {
+		log.Printf("capture: %v", err)
+		return
+	}
+	go func() {
+		for p := range c.Packets() {
+			h.mu.Lock()
+			h.packets = appendRing(h.packets, model.Packet{T: p.T, Proto: p.Proto, Src: p.Src, Dst: p.Dst, Length: p.Length, Info: p.Info}, 200)
+			h.mu.Unlock()
+		}
+	}()
+}
+
 func (h *Hub) snapshot() model.Snapshot {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -334,6 +362,7 @@ func (h *Hub) snapshot() model.Snapshot {
 		Traffic:       append([]model.TrafficPoint(nil), h.traffic...),
 		Latency:       append([]model.LatencyPoint(nil), h.latency...),
 		TopConns:      append([]model.Conn(nil), h.conns...),
+		Packets:       append([]model.Packet(nil), h.packets...),
 		LatencyMs:     h.latMs,
 		LossPct:       h.lossPct,
 		UpdatedAt:     time.Now().Unix(),
@@ -621,8 +650,10 @@ func (h *Hub) SetInterface(name string) error {
 		return err
 	}
 	h.sampler.Reset()
+	if h.capture != nil { h.capture.Stop() }
 	h.mu.Lock()
 	h.iface = name
+	h.capture = nil
 	h.ifaceID = id
 	h.info = info
 	h.ifaces = collect.Names()
@@ -633,6 +664,7 @@ func (h *Hub) SetInterface(name string) error {
 	_ = h.st.SetMeta("iface", name)
 	h.push()
 	go h.scanLAN()
+	go h.startCapture()
 	return nil
 }
 
