@@ -1,13 +1,14 @@
 # Ubuntu 24.04+ ships webkit2gtk-4.1 only, so the tag is mandatory on every build.
 TAGS := webkit2_41
+WAILS := go run github.com/wailsapp/wails/v2/cmd/wails@v2.17.0
 
 .PHONY: dev build run test tidy clean
 
 dev:
-	wails dev -tags $(TAGS)
+	$(WAILS) dev -tags $(TAGS)
 
 build:
-	wails build -tags $(TAGS)
+	$(WAILS) build -tags $(TAGS)
 
 run: build
 	./build/bin/netscope
